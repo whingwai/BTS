@@ -1,0 +1,84 @@
+<!DOCTYPE html> 
+<html>
+<head>
+<meta charset="utf-8">
+<title>jQuery Mobile Web App</title>
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+<script src="js/main.js"></script>
+<script>
+$(document).ready(function() {
+	$("#notice").html("");
+	
+	$("#submitBtn").click(function () {
+		$("#notice").html("");
+		
+		var URLs="insertdb.php";
+		var userid=$("#username").val();
+		var pwdid=$("#password").val();
+		var emailid=$("#email").val();
+		var myData = "&login="+ userid + "&password=" + pwdid + "&email=" + emailid; 
+		
+		if( $("#password").val() != $("#rePassword").val()){
+			$("#notice").html("Password is not the same !");
+		} else {
+		
+			$.ajax({
+				url: URLs,
+				data: myData,
+				type:"POST",
+				dataType:'text',
+				success: function(msg){
+					if ( $.trim(msg)=="success"){
+						$("#notice").html("Register Success !");
+						window.location.href="login2.html";
+				   }else{
+						$("#notice").html("User name is not available ! Please try another !");
+				}
+				}
+			 });
+		}		
+	});
+});
+</script>
+
+</head> 
+
+<body> 
+<div data-role="page" id="login">
+	<div data-role="header">
+		<a href="new_index.html" class="ui-btn-left ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-left ui-icon-home">Home</a>
+		<h1>Register</h1>
+	</div>
+    <div role="main" class="ui-content">
+		<form>
+			<fieldset>
+				<legend>Register</legend>
+				<br/>
+				
+				<p id="notice" style="color:red"></p>
+				
+				<label for='username' >Login Name*: </label>
+				<input type='text'  id='username' maxlength="50" />
+
+				<label for='email' >Email Address*:</label>
+				<input type='text'  id='email' maxlength="50" />
+				
+                <label for='password' >Password*:</label>
+				<input type='password' id='password' maxlength="50" />
+				
+				<label for='rePassword' >Re-Enter Password*:</label>
+				<input type='password' id='rePassword' maxlength="50" />
+				
+				<a id="submitBtn" class="ui-btn">Submit</a> 
+			</fieldset>
+        </form>
+	</div>
+        
+	<div data-role="footer">
+		<h4>Welcome</h4>
+	</div>
+</div>
+</body> 
+</html>

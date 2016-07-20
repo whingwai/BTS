@@ -1,0 +1,68 @@
+<!DOCTYPE html> 
+<html>
+<head>
+<meta charset="utf-8">
+<title>jQuery Mobile Web App</title>
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+<script src="js/main.js"></script>
+<script>
+$(document).ready(function() {
+	$("#submitBtn").click(function () {
+		var URLs="getdb.php";
+		var userid=$("#username").val();
+		var pwdid=$("#password").val();
+		var myData = { 
+			'login': userid,
+			'password':pwdid 
+		};
+		
+		$.ajax({
+			url: URLs,
+			data: JSON.stringify(myData),
+			type:"POST",
+			dataType:"text",
+			success: function(msg){
+				if ($.trim(msg)=="success"){
+					alert ("Login Success" );
+			   }else{
+					alert ("Login Fail !" );
+			}
+			}
+		 });
+		
+	});
+});
+</script>
+</head> 
+
+<body> 
+<div data-role="page" id="login">
+	<div data-role="header">
+        <a href="new_index.html" class="ui-btn-left ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-left ui-icon-home">Home</a>
+		<h1>Login</h1>
+	</div>
+	
+	<div role="main" class="ui-content">
+ 		<form>
+			<fieldset>
+				<H2>Login</H2>
+				<label for='username' >Login Name*: </label>
+				<input type='text'  id='username' maxlength="50" />
+     
+				<label for='password' >Password*:</label>
+				<input type='password' id='password' maxlength="50" />
+				
+				<a id="submitBtn" class="ui-btn">Login</a> 
+			</fieldset>
+        </form>
+	</div>
+        
+	<div data-role="footer">
+		<h4></h4>
+	</div>
+	
+</div>
+</body> 
+</html>

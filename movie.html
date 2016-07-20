@@ -1,0 +1,58 @@
+<!DOCTYPE html> 
+<html>
+<head>
+<meta charset="utf-8">
+<title>jQuery Mobile Web App</title>
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+<script src="js/main.js"></script>
+</head> 
+
+<body> 
+<div data-role="page" id="Movie Sharing">
+	<div data-role="header">
+        <a href="new_index.html" class="ui-btn-left ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-left ui-icon-home">Home</a>
+		<h1>Our movie</h1>
+	</div>
+	
+	<div role="main" class="ui-content">
+ 		<form>
+			<fieldset>
+				<H2>Movies</H2>
+			</fieldset>
+        </form>
+	</div>
+	
+	<div id="player"></div>
+        
+	<div data-role="footer">
+		<h4></h4>
+	</div>
+	
+</div>
+<script>
+	var tag = document.createElement('script');
+
+	tag.src = "https://www.youtube.com/iframe_api";
+	var firstScriptTag = document.getElementsByTagName('script')[0];
+	firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+	var player;
+	function onYouTubeIframeAPIReady() {
+		player = new YT.Player('player', {
+		height: '400',
+		width: '600',
+		videoId: 'M7lc1UVf-VE',
+		events: {
+			'onReady': onPlayerReady
+		}
+		});
+	}
+
+  function onPlayerReady(event) {
+		event.target.playVideo();
+  }
+</script>
+</body> 
+</html>
