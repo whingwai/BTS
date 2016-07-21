@@ -7,6 +7,8 @@
 <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 <script src="js/main.js"></script>
+<link rel="stylesheet" href="css/themes/test.css" />
+  <link rel="stylesheet" href="css/themes/jquery.mobile.icons.min.css" />
 </head> 
 
 <body> 
@@ -24,35 +26,119 @@
         </form>
 	</div>
 	
-	<div id="player"></div>
+	<iframe id="player"
+        width="640" height="360"
+        src="https://www.youtube.com/embed/9xXSTepRh9c?enablejsapi=1"
+        frameborder="0"
+        style="border: solid 4px #37474F"
+	></iframe>
+	
+	<p></p>
+	
+	<iframe id="player2"
+        width="640" height="360"
+        src="https://www.youtube.com/embed/NCuf3hqF-hk?enablejsapi=1"
+        frameborder="0"
+        style="border: solid 4px #37474F"
+	></iframe>
+
+	<script type="text/javascript">
+	  var tag = document.createElement('script');
+	  tag.id = 'iframePlay';
+	  tag.src = 'https://www.youtube.com/iframe_api';
+	  var firstScriptTag = document.getElementsByTagName('script')[0];
+	  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+	  var player;
+	  var player2;
+	  function onYouTubeIframeAPIReady() {
+		player = new YT.Player('player', {
+			events: {
+			  'onReady': onPlayerReady,
+			  'onStateChange': onPlayerStateChange,
+			  'onError': onError
+			}
+		});
+		
+		player2 = new YT.Player('player2', {
+			events: {
+			  'onReady': onPlayerReady2,
+			  'onStateChange': onPlayerStateChange2,
+			  'onError': onError2
+			}
+		});
+	  }
+	  
+	  function onPlayerReady(event) {
+		document.getElementById('player').style.borderColor = '#FF6D00';
+	  }
+	  
+	  function onPlayerReady2(event) {
+		document.getElementById('player2').style.borderColor = '#FF6D00';
+	  }
+	  
+	  function changeBorderColor(playerStatus) {
+		var color;
+		if (playerStatus == -1) {
+		  color = "#37474F"; // unstarted = gray
+		} else if (playerStatus == 0) {
+		  color = "#FFFF00"; // ended = yellow
+		} else if (playerStatus == 1) {
+		  color = "#33691E"; // playing = green
+		} else if (playerStatus == 2) {
+		  color = "#DD2C00"; // paused = red
+		} else if (playerStatus == 3) {
+		  color = "#AA00FF"; // buffering = purple
+		} else if (playerStatus == 5) {
+		  color = "#FF6DOO"; // video cued = orange
+		}
+		if (color) {
+		  document.getElementById('player').style.borderColor = color;
+		}
+	  }
+	  
+	  function changeBorderColor2(playerStatus) {
+		var color;
+		if (playerStatus == -1) {
+		  color = "#37474F"; // unstarted = gray
+		} else if (playerStatus == 0) {
+		  color = "#FFFF00"; // ended = yellow
+		} else if (playerStatus == 1) {
+		  color = "#33691E"; // playing = green
+		} else if (playerStatus == 2) {
+		  color = "#DD2C00"; // paused = red
+		} else if (playerStatus == 3) {
+		  color = "#AA00FF"; // buffering = purple
+		} else if (playerStatus == 5) {
+		  color = "#FF6DOO"; // video cued = orange
+		}
+		if (color) {
+		  document.getElementById('player2').style.borderColor = color;
+		}
+	  }
+	  
+	  function onPlayerStateChange(event) {
+		changeBorderColor(event.data);
+	  }
+	  
+	  function onPlayerStateChange2(event) {
+		changeBorderColor2(event.data);
+	  }
+	  
+	  function onPlayerError(event) {
+		alert("Error !" + event.data);
+		}
+		
+	  function onPlayerError2(event) {
+		alert("Error !" + event.data);
+		}
+	  
+	</script>
         
 	<div data-role="footer">
 		<h4></h4>
 	</div>
 	
 </div>
-<script>
-	var tag = document.createElement('script');
-
-	tag.src = "https://www.youtube.com/iframe_api";
-	var firstScriptTag = document.getElementsByTagName('script')[0];
-	firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-	var player;
-	function onYouTubeIframeAPIReady() {
-		player = new YT.Player('player', {
-		height: '400',
-		width: '600',
-		videoId: 'M7lc1UVf-VE',
-		events: {
-			'onReady': onPlayerReady
-		}
-		});
-	}
-
-  function onPlayerReady(event) {
-		event.target.playVideo();
-  }
-</script>
 </body> 
 </html>

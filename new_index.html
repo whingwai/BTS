@@ -7,26 +7,56 @@
 <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 <script src="js/main.js"></script>
+<link rel="stylesheet" href="css/themes/test.css" />
+  <link rel="stylesheet" href="css/themes/jquery.mobile.icons.min.css" />
+
 </head> 
-<body> 
+<body>
+
+
 
 <div data-role="page" id="page">
-	<div data-role="header">
-		<h1>Content</h1>
+
+	<div data-role="header" data-theme="a">
+		<h1><strong>BTS</strong></h1>
 	</div>
+    
+      <div style="width: 100%;">
+        <img alt="" src="img/born to shine eng.jpg" style="width: 100%;">
+    </div>
+   
+    
+    
+  <div class="ui-corner-all custom-corners">
+  <div class="ui-bar ui-bar-a">
+
+
+    <h1>Vision </h1>
+  </div>
+  <div class="ui-body ui-body-a">
+    <p>
+Starting with their very own identity, we want children to know that they are born to shine for Jesus – to be a burning and shining lamp like John the Baptist in the darkest hours of the endtimes—and to prepare for Jesus' second coming.
+
+We expect them to possess the quintessence of Daniel's life and to live like him: loyal, bold and uncompromising, focused on seeking to understand the things in the endtimes, and to walk in His revelations, love Him and love one another till the very end.
+</p>
+  </div>
+</div>
+    
 	<div data-role="content">	
-		<ul data-role="listview">
+		<ul data-role="listview" data-filter="true" data-filter-placeholder="Search" data-inset="true">
 			<li><a href="login.html">Register</a></li>
             <li><a href="login2.html">Login</a></li>
 			<li><a href="redirect.php">Movie Sharing</a></li>
-            <li><a href="#page5">Games</a></li>
+            <li><a href="photos.html">Photos</a></li>
 			<li><a href="logout.php">Logout</a></li>
 		</ul>		
 	</div>
 	<div data-role="footer">
-		<h4>Page Footer</h4>
+		<h4></h4>
 	</div>
 </div>
+
+
 
 <div data-role="page" id="page2" data-add-back-btn="back">
 	<div data-role="header">
@@ -75,6 +105,9 @@
 		<h4>Page Footer</h4>
 	</div>
 </div>
+
+
+
 
 </body>
 </html>
